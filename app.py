@@ -28,7 +28,8 @@ def checkout():
   title = None
   amount = None
   error = None
-  clientsecret = None
+  data = None
+  intent = None
 
   if item == '1':
     title = 'The Art of Doing Science and Engineering'
@@ -43,23 +44,38 @@ def checkout():
     # Included in layout view, feel free to assign error
     error = 'No item selected' 
 
-  # initiate stripe PaymentIntent
   intent = stripe.PaymentIntent.create(
     amount = amount,
     currency = "usd",
     automatic_payment_methods = {"enabled": True},
   )
 
-  print('payment initiated ' +intent.client_secret, file=sys.stdout) 
+  print('payment initiated ' +intent.id, file=sys.stdout)
 
-  #retrieve payment for logging
+  #establishing data convention to ease passing variables to js
+  data= {'title':title, 'amount':amount, 'error':error, 'client_secret':intent.client_secret}
 
-  return render_template('checkout.html', title=title, amount=amount, error=error, client_secret=intent.client_secret)
+  return render_template('checkout.html', data=data)
 
 # Success route
 @app.route('/success', methods=['GET'])
 def success():
-  return render_template('success.html')
+  status = None
+  amount = None
+
+  #get client secret from Stripe appended query parameters
+  payment_intent_id = request.args.get('payment_intent')
+  print('payment intent id ' + payment_intent_id)
+
+  #retrieve the payment intent
+  intent = stripe.PaymentIntent.retrieve(
+    payment_intent_id
+  )
+
+  #create data to pass important parameters
+  data= {'id':payment_intent_id, 'amount':intent.amount, 'status':intent.status}
+
+  return render_template('success.html', data=data)
 
 
 if __name__ == '__main__':
