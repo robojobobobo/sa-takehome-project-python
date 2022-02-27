@@ -22,3 +22,16 @@ h1, h2, h3, h4 {
   border-color: #ccc;
   padding: 5px;
 }
+.positive-text {
+  color: #17a2b8;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.payment-reference{
+  color: #6c757d;
+  margin-top: 10px;
+}
+.payment-status{
+  margin-top:20px;
+  font-size:15px;
+}

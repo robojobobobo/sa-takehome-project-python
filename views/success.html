@@ -11,14 +11,23 @@
       Success!
     </h1>
   </div>
-  <div class="mt-40 text-center">
-    <div class="mt-20 text-center text-secondary border-placeholder">
-      <p>
-      Thank you for your purchase!
-      Total paid: $<span class="amount" id="amount" data-amount="{{ data.amount }}"></span>
-      Purchase reference: {{ data.id }}
-      payment status: {{ data.status}}
-      </p>
+  <div class="card box-shadow text-center mt-40">
+    <div class="card-body">
+      <div  class="positive-text">
+        Thank you for your purchase!
+      </div>
+      <div>
+        Your total payment was: $<span class="amount" id="amount" data-amount="{{ data.amount }}"></span>
+      </div>
+      <div>
+        Please retain the following reference number for your records:
+      </div>
+      <div class="payment-reference">
+        {{ data.id }}
+      </div>
+      <div class="payment-status">
+        Payment status: {{ data.status}}
+      </div>
     </div>
   </div>
 </main>
