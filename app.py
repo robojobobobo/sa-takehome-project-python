@@ -12,8 +12,8 @@ app = Flask(__name__,
   template_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), "views"),
   static_folder=os.path.join(os.path.dirname(os.path.abspath(__file__)), "public"))
 
-#Stripe variables
-stripe.api_key='sk_test_51KWojhGG70SVIjLMD7fZWNAJ2oB1fkFuYQdxJXHS7Ip5Q8V8V88Z0UTu8otd2FRmyxG2agE5tcma7ZOE1oAJ82hB00fUMGJuTo'
+#import Stripe variables from .ENV file
+stripe.api_key=os.getenv("STRIPE_SECRET_KEY")
 
 # Home route
 @app.route('/', methods=['GET'])
@@ -28,9 +28,7 @@ def checkout():
   title = None
   amount = None
   error = None
-  data = None
-  intent = None
-
+  
   if item == '1':
     title = 'The Art of Doing Science and Engineering'
     amount = 2300
@@ -65,7 +63,7 @@ def success():
 
   #get client secret from Stripe appended query parameters
   payment_intent_id = request.args.get('payment_intent')
-  print('payment intent id ' + payment_intent_id)
+  #print('payment intent id ' + payment_intent_id)
 
   #retrieve the payment intent
   intent = stripe.PaymentIntent.retrieve(

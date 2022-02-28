@@ -1,10 +1,16 @@
+
+//todo - reference variable in the .env file
 const stripe = Stripe(
-    'pk_test_51KWojhGG70SVIjLMrwySfAASeyY6Hd7zM31Ls9RbzRHSS1vyBlaLoE02BauxWSBjYd94lZsjjkFBx8p5YtaHUPob00En8icC0m'
+  "pk_test_51KWojhGG70SVIjLMrwySfAASeyY6Hd7zM31Ls9RbzRHSS1vyBlaLoE02BauxWSBjYd94lZsjjkFBx8p5YtaHUPob00En8icC0m"
     );
 
+const appearance = {
+    theme: 'flat'
+  };
+     
 const options = {
     clientSecret: client_secret,
-    apperance:{/*TODO - mess around with this/*/},
+    appearance: appearance
 };
 
 const elements = stripe.elements(options);

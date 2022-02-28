@@ -18,18 +18,19 @@
         {{ title }}
       </h5>
       <hr class="mt-40">
-      <div class="mt-20 text-info">
-        Total due: $<span class="amount" id="amount" data-amount="{{ data.amount }}"></span>
-      </div>
+      
     </div>
     <div class="card box-shadow mt-40">
       <div class="card-body">
         <form name="payment-form" id="payment-form" data-secret="{{ data.client_secret }}">
           <div>
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@email.com">
+            <label for="email" class="input-font">Email address</label>
+            <input type="email" class="form-control custom-input-box" id="email" name="email" placeholder="you@email.com">
             <div id="payment-element"></div>
               <!-- Elements will create form elements here -->
+            </div>
+            <div class="mt-20 text-info">
+              Total due: $<span class="amount" id="amount" data-amount="{{ data.amount }}"></span>
             </div>
           <div class="mt-20">
             <button type="submit" id="submit" class="btn btn-lg btn-block btn-primary">Pay $<span class="amount" data-amount="{{ data.amount }}"></span></button>
