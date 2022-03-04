@@ -61,7 +61,7 @@ def success():
   status = None
   amount = None
 
-  #get client secret from Stripe appended query parameters
+  #get client secret from Stripe-returned query parameters
   payment_intent_id = request.args.get('payment_intent')
   #print('payment intent id ' + payment_intent_id)
 
@@ -70,11 +70,16 @@ def success():
     payment_intent_id
   )
 
-  #create data to pass important parameters
+  #create data object to pass display parameters
   data= {'id':payment_intent_id, 'amount':intent.amount, 'status':intent.status}
 
   return render_template('success.html', data=data)
 
+#route to pass publishable API key to client side without hardcoding
+#I suspect Flask has another way to publish from .ENV to JavaScript, this is making due for now
+@app.route('/stripekey', methods=['GET'])
+def publishkey():
+  return jsonify(os.getenv("STRIPE_PUBLISHABLE_KEY"))
 
 if __name__ == '__main__':
   app.run(port=5000, host='0.0.0.0', debug=True)
