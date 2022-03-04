@@ -29,13 +29,16 @@ paymentElement.mount('#payment-element');
 //listen to submission of payment
 const form = document.getElementById("payment-form");
 
+//get root URL to make portable between environments
+var host = location.protocol.concat('//').concat(location.hostname).concat(':').concat(location.port);
+
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const {error} = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: 'http://localhost:5000/success?' + client_secret
+      return_url:  host +'/success?' + client_secret
     },
   });
 
