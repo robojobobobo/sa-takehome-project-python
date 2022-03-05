@@ -1,26 +1,12 @@
 # Take home project
-This is a simple e-commerce application that a customer can use to purchase a book, but it's missing the payments functionality — your goal is to integrate Stripe to get this application running!
+This is Rob's solution to the Stripe SA takehome project
 
-## Candidate instructions
-You'll receive these in email.
+## User Instructions
+To get this to work, you will need to create your own .env file in the root of the project with the following parameters
+STRIPE_SECRET_KEY=<your value>
+STRIPE_PUBLISHABLE_KEY=<your value>
 
-## Application overview
-This demo is written in Python with the [Flask framework](https://flask.palletsprojects.com/). You'll need to retrieve a set of testmode API keys from the Stripe dashboard (you can create a free test account [here](https://dashboard.stripe.com/register)) to run this locally.
-
-We're using the [Bootstrap](https://getbootstrap.com/docs/4.6/getting-started/introduction/) CSS framework. It's the most popular CSS framework in the world and is pretty easy to get started with — feel free to modify styles/layout if you like. 
-
-To simplify this project, we're also not using any database here, either. Instead `app.py` includes a simple case statement to read the GET params for `item`. 
-
-To get started, clone the repository and run pip3 to install dependencies:
-
-```
-git clone https://github.com/marko-stripe/sa-takehome-project-python && cd sa-takehome-project-python
-pip3 install -r requirements.txt
-```
-
-Rename `sample.env` to `.env` and populate it with your Stripe account's test API keys.
-
-Then run the application locally:
+To run the app, ensure you have flask and python installed, then navigate to the root directory of this project and execute:
 
 ```
 flask run
